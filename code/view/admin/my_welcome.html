@@ -1,0 +1,30 @@
+<!--{:title('主页')}-->
+<div class="title">系统公告</div>
+<ul class="home-info">
+    <if condition="(!$notice)">
+        <li>暂无公告</li>
+    </if>
+    <foreach condition="($notice as $v)">
+        <li>
+        	<a class="hover J_show" data-read="{url('my/noticeRead','id='.$v['id'])}" href="{url('my/notice','id='.$v['id'])}" data-refresh="false" data-title="{$v['title']}">
+                <if condition="(!$v['read'])">
+                    <font class="J_noread" style="color:red">[未读]</font>
+                </if>
+				<font>[{$v['time_create_txt']}]{$v['type']['name']}：{$v['title']}</font>
+        	</a>
+        </li>
+    </foreach>
+</ul>
+<script>
+    $(function(){
+        $('.J_show').click(function(event) {
+            if($(this).find('.J_noread').length>0){
+                var url=$(this).attr('data-read');
+                $(this).find('.J_noread').remove();
+                $.get(url, function(data) {
+                   console.log(data.message);
+                },'json');
+            }
+        });
+    })
+</script>

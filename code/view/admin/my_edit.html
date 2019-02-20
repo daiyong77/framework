@@ -1,0 +1,70 @@
+<!--{:title('修改我的信息')}-->
+<div class="title">
+    <span>修改我的信息</span>
+</div>
+<form action="{url('my/edit')}" method="post" class="J_ajaxform" data-callback="callback">
+    <table class="table">
+        <tr>
+            <td rowspan="100">
+                <input type="hidden" name="avatar" value="{$data['avatar']}" class="J_upload_image" data-error="__STATIC__/images/none.png" data-size="200*200">
+            </td>
+            <th>用户名</th>
+            <td>
+                <input type="text" name="username" data-disabled="{$data['id']}" value="{$data['username']}">
+                <span class="must">*</span>
+                <span class="tip">作为登录系统的用户名</span>
+            </td>
+        </tr>
+        <tr>
+            <th>修改密码</th>
+            <td>
+                <input type="text" name="password" value="">
+                <span class="must"></span>
+                <span class="tip">修改密码后不需要再次登录</span>
+            </td>
+        </tr>
+        <tr>
+            <th>昵称</th>
+            <td>
+                <input type="text" name="nickname" value="{$data['nickname']}">
+                <span class="tip">昵称,不填则默认为用户名</span>
+            </td>
+        </tr>
+        <tr>
+            <th>手机号</th>
+            <td>
+                <input type="text" name="phone" value="{$data['phone']}">
+                <span class="tip">也可作为登录账号</span>
+            </td>
+        </tr>
+        <tr>
+            <th>邮箱</th>
+            <td>
+                <input type="text" name="mail" value="{$data['mail']}">
+                <span class="tip">也可作为登录账号</span>
+            </td>
+        </tr>
+    </table>
+    <div class="table-button">
+        <button class="btn blue">提交</button>
+        <a href="javascript:window.location=location.href" class="btn">刷新&amp;重置</a>
+    </div>
+</form>
+<!--图片上传-->
+<link href="__SOURCE__/cropper/cropper.min.css" rel="stylesheet">
+<script src="__SOURCE__/cropper/cropper.min.js"></script>
+<script src="__STATIC__/js/uploadImage.js"></script>
+<script>
+//form 回调
+function callback(data) {
+    if (data.status == 1) {
+        var nickname = $('input[name="nickname"]').val();
+        if (!nickname) nickname = $('input[name="username"]').val();
+        var avatar = $('input[name="avatar"]').val();
+        if (!avatar) avatar = '__STATIC__/images/face.png';
+        $('.J_frame_nickname', parent.document).html(nickname);
+        $('.J_frame_avatar', parent.document).prop('src', avatar);
+    }
+    return true;
+}
+</script>

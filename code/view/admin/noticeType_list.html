@@ -1,0 +1,36 @@
+<!--{:title('公告类型设置')}-->
+<div class="title">公告类型设置</div>
+<div class="option">
+    <a title="添加地区" data-width="500" data-height="200" href="{url('noticeType/edit',$get)}" class="btn blue J_power J_show">添加</a>
+    <a title="提交排序" data-url="{url('noticeType/editSort')}" class="btn blue J_power J_sort_submit">提交排序</a>
+</div>
+<table class="list">
+    <tr>
+        <th width="50" class="center">id</th>
+        <th width="50" class="center">排序</th>
+        <th width="150">地区名称</th>
+        <th>操作</th>
+    </tr>
+    <if condition="(!$list)">
+        <tr>
+            <td colspan="100">未找到任何记录</td>
+        </tr>
+    </if>
+    <foreach condition="($list as $v)">
+        <tr>
+            <td class="center">{$v['id']}</td>
+            <td class="center">
+                <input type="text" class="sort J_select J_sort" data-id="{$v['id']}" data-default="{$v['sort']}" value="{$v['sort']}">
+            </td>
+            <td>{$v['name']}</td>
+            <td>
+                <a class="J_power J_show" data-refresh="true"  data-width="500" data-height="200"  title="修改{$v['name']}" href="{url('noticeType/edit',array('id'=>$v['id']))}">
+                <i class="fa fa-pencil"></i>
+            </a>
+                <a title="删除{$v['name']}" href="javascript:;" class="red J_confirm J_power" data-url="{url('noticeType/delete',array('id'=>$v['id']))}">
+                <i class="red fa fa-trash-o"></i>
+            </a>
+            </td>
+        </tr>
+    </foreach>
+</table>

@@ -1,0 +1,104 @@
+<!--{:title('管理员管理')}-->
+<div class="title">管理员管理</div>
+<form action="{url('admin/list')}" method="get">
+    <ul class="search">
+        <li>
+            <dt>按用户名搜索</dt>
+            <dd>
+                <input type="text" name="username" value="{$get['username']}">
+            </dd>
+        </li>
+        <li>
+            <dt>按手机号搜索</dt>
+            <dd>
+                <input type="text" name="phone" value="{$get['phone']}">
+            </dd>
+        </li>
+        <!--     <li>
+            <dt>按邮箱搜索</dt>
+            <dd>
+                <input type="text" name="mail" value="{$get['mail']}">
+            </dd>
+        </li>  -->
+        <li>
+            <dt>选择管理组</dt>
+            <dd>
+                <select onchange="this.form.submit()" name="gid" data-selected="{$get['gid']}">
+                    <option value="">--选择管理组--</option>
+                    <foreach condition="($group as $v)">
+                        <option value="{$v['id']}">{$v['name']}</option>
+                    </foreach>
+                </select>
+            </dd>
+        </li>
+        <li>
+            <dt>选择状态</dt>
+            <dd>
+                <input type="hidden" name="disable" value="{$get['disable']}">
+                <a class="btn-min {if(!$get['disable'])}current{/if}" href="{url('admin/list',$get,'disable=0')}">全部</a>
+                <foreach condition="($disable as $k=>$v)">
+                     <a class="btn-min {if($get['disable']==$k)}current{/if}" href="{url('admin/list',$get,'disable='.$k)}">{$v}</a>
+                </foreach>
+            </dd>
+        </li>
+        <li>
+            <dt></dt>
+            <dd>
+                <button class="btn green" type="submit">查询</button>
+                <a class="btn" href="{url('admin/list')}">重置</a>
+            </dd>
+        </li>
+    </ul>
+</form>
+<div class="title line"></div>
+<div class="option">
+    <a href="{url('admin/edit',$get)}" class="btn blue J_power">添加</a>
+    <a href="{url('admin/listExport',$get)}" class="btn orange J_power">按查询结果导出(共{$page['count']}条)</a>
+</div>
+<table class="list">
+    <tr>
+        <th class="center" width="50">id</th>
+        <th width="150">用户名</th>
+        <!-- <th width="120">昵称(姓名)</th> -->
+        <th width="120">管理组</th>
+        <th width="120">电话</th>
+        <!-- <th width="240">邮箱</th> -->
+        <th width="80" class="center">当前状态</th>
+        <th>操作</th>
+    </tr>
+    <if condition="(!$list)">
+        <tr>
+            <td colspan="100">未找到任何记录</td>
+        </tr>
+    </if>
+    <foreach condition="($list as $v)">
+        <tr>
+            <td class="center">{$v['id']}</td>
+            <td>{$v['username']}</td>
+            <!-- <td>{$v['nickname']}</td> -->
+            <td>{$group[$v['gid']]['name']}</td>
+            <td>{$v['phone']}</td>
+            <!-- <td>{$v['mail']}</td> -->
+            <td class="center">
+                <if condition="($v['disable']==1)">
+                    <font class="green">
+                        <a href="javascript:;" class="J_ajaxa hover green J_power_html" data-url="{url('admin/editDisable',array('id'=>$v['id'],'disable'=>2))}">{$disable[$v['disable']]}</a>
+                    </font>
+                    <elseif condition="($v['disable']==2)"/>
+                    <font class="red">
+                        <a href="javascript:;" class="J_ajaxa hover red J_power_html" data-url="{url('admin/editDisable',array('id'=>$v['id'],'disable'=>1))}">{$disable[$v['disable']]}</a>
+                    </font>
+                </if>
+            </td>
+            <td>
+                <a title="修改" href="{url('admin/edit',$get,'id='.$v['id'])}" class="J_power">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                <a title="删除{$v['username']}" href="javascript:;" class="red J_confirm J_power" data-url="{url('admin/delete',array('id'=>$v['id']))}">
+                        <i class="red fa fa-trash-o"></i>
+                    </a>
+            </td>
+        </tr>
+    </foreach>
+</table>
+<include path="common/page.html" />

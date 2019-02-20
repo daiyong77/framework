@@ -1,0 +1,86 @@
+<!--{:title($get['id']?'修改管理员':'新增管理员')}-->
+<div class="title">
+    <span>管理员管理 &gt;</span>
+    <span>{if($get['id'])}修改{else}新增{/if}管理员</span>
+    <a class="hover J_power" href="{url('admin/list',$get)}">返回</a>
+</div>
+<form action="{url('admin/edit')}" method="post" class="J_ajaxform">
+    <input type="hidden" value="{$data['id']}" name="id">
+    <table class="table">
+        <tr>
+            <td rowspan="100">
+                <input type="hidden" name="avatar" value="{$data['avatar']}" class="J_upload_image" data-error="__STATIC__/images/none.png" data-size="200*200">
+            </td>
+            <th>选择管理组</th>
+            <td>
+                <select name="gid" data-selected="{$data['gid']}">
+                    <option value="">--请选择管理组--</option>
+                    <foreach condition="($group as $v)">
+                        <option value="{$v['id']}">{$v['name']}</option>
+                    </foreach>
+                </select>
+                <span class="must">*</span>
+                <span class="tip">选择管理组</span>
+            </td>
+        </tr>
+        <tr>
+            <th>用户名</th>
+            <td>
+                <input type="text" name="username" data-disabled="{$data['id']}" value="{$data['username']}">
+                <span class="must">*</span>
+                <span class="tip">作为登录系统的用户名</span>
+            </td>
+        </tr>
+        <tr>
+            <th>{if($get['id'])}修改密码{else}设置密码{/if}</th>
+            <td>
+                <input type="text" name="password" value="">
+                <if condition="(!$get['id'])">
+                    <span class="must">*</span>
+                    <span class="tip">作为登录系统时的密码</span>
+                    <else />
+                    <span class="tip">修改密码后不需要再次登录</span>
+                </if>
+            </td>
+        </tr>
+        <tr>
+            <th>昵称</th>
+            <td>
+                <input type="text" name="nickname" value="{$data['nickname']}">
+                <span class="tip">昵称,不填则默认为用户名</span>
+            </td>
+        </tr>
+        <tr>
+            <th>手机号</th>
+            <td>
+                <input type="text" name="phone" value="{$data['phone']}">
+                <span class="tip">也可作为登录账号</span>
+            </td>
+        </tr>
+        <tr>
+            <th>邮箱</th>
+            <td>
+                <input type="text" name="mail" value="{$data['mail']}">
+                <span class="tip">也可作为登录账号</span>
+            </td>
+        </tr>
+     <!--    <tr>
+            <th>是否禁用</th>
+            <td>
+                <label>
+                    <input type="checkbox" name="disable" data-checked="{$data['disable']}" value="2">禁用后将不允许登录
+                </label>
+                <span class="tip">已登录用户将会退出</span>
+            </td>
+        </tr> -->
+    </table>
+    <div class="table-button">
+        <a href="{url('admin/list',$get)}" class="btn J_power">返回</a>
+        <button class="btn blue">提交</button>
+        <a href="javascript:window.location=location.href" class="btn">刷新&amp;重置</a>
+    </div>
+</form>
+<!--图片上传-->
+<link href="__SOURCE__/cropper/cropper.min.css" rel="stylesheet">
+<script src="__SOURCE__/cropper/cropper.min.js"></script>
+<script src="__STATIC__/js/uploadImage.js"></script>

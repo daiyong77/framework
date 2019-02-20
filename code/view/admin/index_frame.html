@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <meta name="renderer" content="webkit"><!-- 使用webkit渲染 -->
+    <link rel="stylesheet" href="__STATIC__/css/frame.css">
+    <script src="__SOURCE__/jquery1.js"></script>
+    <include path="common/global.html" />
+</head>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">后台管理</div>
+            <ul class="nav J_header_nav">
+                <li class="current">系统操作</li>
+                <li>其他操作</li>
+            </ul>
+            <div class="info J_toggle">
+                <div class="face fl">
+                    <img class="fl J_frame_avatar" src="{if($admin['avatar'])}{$admin['avatar']}{else}__STATIC__/images/face.png{/if}">
+                </div>
+                    <div class="text fl">
+                        <div class="group J_frame_group">{$admin['group']['name']}</div>
+                        <div class="user J_frame_nickname">{$admin['nickname']}</div>
+                    </div>
+                    <div class="toggle fl">
+                        <i class="fa fa-angle-double-down"></i>
+                    </div>
+                    <div class="info_box J_toggle_box">
+                        <ul>
+                            <li>
+                                <a href="javascript:;" class="J_frame_show J_power" data-url="{url('my/edit')}">
+                                <i class="fa fa-cog"></i>
+                                <span>修改个人信息</span>
+                            </a>
+                            </li>
+                            <li>
+                                <a class="J_power"  href="{url('index/loginout')}">
+                                <i class="fa fa-user"></i>
+                                <span>退出</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="frame">
+                <div class="left J_nav">
+                    <ul>
+                        <li>
+                            <div class="father current J_power" data-url="{url('my/welcome')}">
+                                <i class="fa fa-tachometer fl"></i>
+                                <span class="fl">主页</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="father J_power" data-url="{url('admin/list')}">
+                                <i class="fa fa-users fl"></i>
+                                <span class="fl">管理员管理</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="father J_power" data-url="{url('notice/list')}">
+                                <i class="fa fa-file-text fl"></i>
+                                <span class="fl">公告管理</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="hide">
+                        <li>
+                            <div class="father J_power" data-url="{url('adminGroup/list')}">
+                                <i class="fa fa-users fl"></i>
+                                <span class="fl">管理组设置</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="father">
+                                <i class="fa  fa-cogs fl"></i>
+                                <span class="fl">固定数据设置</span>
+                                <i class="fa fa-angle-down fr"></i>
+                            </div>
+                            <dl>
+                                <dd class="J_power" data-url="{url('area/list')}">地区设置</dd>
+                                 <dd class="J_power" data-url="{url('noticeType/list')}">公告类型设置</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <div class="father J_power" data-url="{url('settings/index')}">
+                                <i class="fa fa-cog fl"></i>
+                                <span class="fl">系统设置</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="right">
+                    <iframe class="J_frame" src="{url('my/welcome')}" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+        <link rel="stylesheet" href="__SOURCE__/font-awesome/font-awesome.css">
+        <script src="__STATIC__/js/frame.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<php>
+    if(isset($page)&&$page){
+    if(isset($get)&&$get){
+    unset($get['page']);
+    }
+    $url1=$config['sys']['controller'].'/'.$config['sys']['action'];
+    }else{
+    $page['all']=0;
+    }
+</php>
+<if condition="($page['all']>1)">
+    <div class="option page-fixed">
+        <ul class="page">
+            <li>
+                <a href="{url($url1,$get,'page=1')}" title="第一页">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
+            </li>
+            <li>
+                <a href="{url($url1,$get,'page='.$page['prev'])}" title="上一页">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            </li>
+            <if condition="($page['now']>4)">
+                <li><a href="{url($url1,$get,'page=1')}">1...</a></li>
+                <elseif condition="($page['now']!=1)" />
+                <li><a href="{url($url1,$get,'page=1')}">1</a></li>
+            </if>
+            <for condition="($i=$page['now']-5;$i<$page['now'];$i++)">
+                <php>if(1 >=$i )continue;</php>
+                <li>
+                    <a href="{url($url1,$get,'page='.$i)}">{$i}</a>
+                </li>
+            </for>
+            <li class="current"><a href="javascript:;">{$page['now']}</a></li>
+            <for condition="($i=$page['now']+1;$i<$page['now']+6;$i++)">
+                <php>if($i >= $page['all'])continue;</php>
+                <li>
+                    <a href="{url($url1,$get,'page='.$i)}">{$i}</a>
+                </li>
+            </for>
+            <if condition="($page['now']+3<$page['all'])">
+                <li><a href="{url($url1,$get,'page='.$page['all'])}">...{$page['all']}</a></li>
+                <elseif condition="($page['now']!=$page['all'])" />
+                <li><a href="{url($url1,$get,'page='.$page['all'])}">{$page['all']}</a></li>
+            </if>
+            <li>
+                <a title="下一页" href="{url($url1,$get,'page='.$page['next'])}">
+                <i class="fa fa-angle-right"></i>
+            </a>
+            </li>
+            <li>
+                <a title="最后一页" href="{url($url1,$get,'page='.$page['all'])}">
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+            </li>
+            <li class="all">
+                <a href="javascript:;">共{$page['count']}条(每页{$config['custom']['page_list']}条)</a>
+            </li>
+        </ul>
+    </div>
+</if>

@@ -1,0 +1,14 @@
+{
+    "require":
+    {
+        "kosinix/grafika": "2.*"
+    },
+    "repositories":
+    {
+        "packagist":
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

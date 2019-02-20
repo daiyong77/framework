@@ -1,0 +1,175 @@
+<!--{:title($get['id']?'修改管理组':'新增管理组')}-->
+<div class="title">
+    <span>管理组设置 &gt;</span>
+    <span>{if($get['id'])}修改{else}新增{/if}管理组</span>
+    <a class="hover J_power" href="{url('adminGroup/list')}">返回</a>
+</div>
+<form action="{url('adminGroup/edit')}" method="post" class="J_ajaxform">
+    <input type="hidden" value="{$data['id']}" name="id">
+    <table class="table">
+        <tr>
+            <th>组名</th>
+            <td>
+                <input type="text" name="name" value="{$data['name']}">
+                <span class="must">*</span>
+                <span class="tip">管理组的标识</span>
+            </td>
+        </tr>
+        <tr>
+            <th>管理组等级</th>
+            <td>
+                <select name="lv" data-selected="{$data['lv']}">
+                    <option value="">--请选择等级--</option>
+                    <foreach condition="($lv as $v)">
+                        <option value="{$v}">{$v}</option>
+                    </foreach>
+                </select>
+                <span class="must">*</span>
+                <span class="tip">等级越高权限越大</span>
+            </td>
+        </tr>
+        <tr>
+            <th>权限选择</th>
+            <td>
+                <div class="fl box" style="height:200px; width: 300px; margin-right: 5px;">
+                    <label>
+                        <input type="checkbox" class="J_check_all" value="{$k}">
+                        <span class="green">全部</span>
+                        <br />
+                    </label>
+                    <div class="J_all">
+                        <foreach condition="($filePower as $k=>$v)">
+                            <if condition="($v)">
+                                <label>
+                                    <input type="checkbox" class="J_check_child" value="{$k}">
+                                    <span class="J_power_show">{$k}</span>
+                                    <a href="javascript:;" class="hover J_openAndClose">展开</a>
+                                    <span class="J_checkShow hide orange">部分被选中</span>
+                                </label>
+                                <div class="J_child" style="display: none">
+                                    <foreach condition="($v as $k2=>$v2)">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input type="checkbox" class="J_child_input" data-checked="{if(in_array($k.'/'.$v2,$data['power']))}{$k}/{$v2}{/if}" name="power[]" value="{$k}/{$v2}">
+                                            <span class="J_power_show">{$v2}</span>
+                                            <br />
+                                        </label>
+                                    </foreach>
+                                </div>
+                                <div class="clear"></div>
+                            </if>
+                        </foreach>
+                    </div>
+                </div>
+                <span class="must">*</span>
+                <span class="tip">拥有的权限</span>
+            </td>
+        </tr>
+    </table>
+    <div class="table-button">
+        <a href="{url('adminGroup/list',$get)}" class="btn J_power">返回</a>
+        <button class="btn blue">提交</button>
+        <a href="javascript:window.location=location.href" class="btn">刷新&amp;重置</a>
+    </div>
+</form>
+<script>
+$(function() {
+    var custom={
+        //主级
+        'admin':'管理员',
+        'adminGroup':'(特殊)管理组',
+        'settings':'(特殊)系统设置',
+        'notice':'公告',
+        'area':'(特殊)地区管理',
+        'noticeType':'(特殊)公告类型设置',
+        //子级
+        'clearCache':'清空所有缓存',
+        'clearTplCache':'清空模板缓存',
+    }
+    //通用
+    var common={
+        index:'主页',
+        list:'列表',
+        edit:'添加&修改',
+        delete:'删除',
+        listExport:'导出列表',
+        editSort:'排序',
+        editDisable:'禁用&启用'
+    };
+    //中文化
+    $('.J_power_show').each(function(index, el) {
+        var html = $(this).html();
+        if(common[html]){
+             $(this).html(common[html]);
+        }
+        if(custom[html]){
+             $(this).html(custom[html]);
+        }
+    });
+    //展开与收起
+    $('.J_openAndClose').click(function(event) {
+        if($(this).html()=='展开'){
+            $(this).parent().next('.J_child').show();
+            $(this).html('收起');
+        }else{
+            $(this).parent().next('.J_child').hide();
+            $(this).html('展开');
+        }
+    });
+    //多选权限
+    checked();
+    $('.J_check_all').change(function(event) {
+        $('.J_all').find('input').prop('checked', $(this).prop('checked'));
+    });
+    $('.J_check_child').change(function(event) {
+        $(this).parent('label').next('.J_child').find('input').prop('checked', $(this).prop('checked'));
+        checked();
+    });
+    $('.J_child_input').change(function(event) {
+        checked();
+    });
+
+    function checked() {
+        var all = true;
+        $('.J_child').each(function(index, el) {
+            var child = true;
+            $(this).find('.J_child_input').each(function(index, el) {
+                if ($(this).prop('checked') == false) {
+                    child = false;
+                    all = false;
+                }
+            });
+            if (child == true) {
+                $(this).prev('label').find('.J_check_child').prop('checked', true);
+            } else {
+                $(this).prev('label').find('.J_check_child').prop('checked', false);
+            }
+        });
+        if (all == true) {
+            $('.J_check_all').prop('checked', true);
+        } else {
+            $('.J_check_all').prop('checked', false);
+        }
+
+        //缩进后没有全部选中的提示
+        $('.J_child').each(function(index, el) {
+            var check=0;
+            var check_no=0;
+            $(this).find('input').each(function(index, el) {
+                if($(this).prop('checked')){
+                    check++;
+                }else{
+                    check_no++;
+                }
+            });
+            if(check_no!=0&&check!=0){
+                $(this).prev('label').find('.J_checkShow').show();
+            }else{
+                $(this).prev('label').find('.J_checkShow').hide();
+            }
+        });
+
+    }
+
+});
+</script>

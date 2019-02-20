@@ -1,0 +1,76 @@
+<!--{:title('请登录')}-->
+<style>
+body {
+    background: #DFE0E2;
+    background: url(__STATIC__/images/login_bg.jpg);
+    padding: 0px 20px;
+    min-width: 450px;
+}
+</style>
+<div class="login">
+    <div class="title-big">后台管理</div>
+    <div class="copyright">©众网信通</div>
+    <div class="box">
+        <form action="{url('index/login')}" method="post" class="J_ajaxform" data-callback="callback">
+            <div class="login-tip">
+                <i class="fa fa-coffee green"></i>
+                <span>请输入登录信息</span>
+            </div>
+            <div class="input">
+                <input type="text" placeholder="用户名/手机号/邮箱" id="username" value="">
+                <input type="hidden" name="username" value="">
+            </div>
+            <div class="input">
+                <input type="password" placeholder="密码" id="password" value="">
+                <input type="hidden" name="password" value="">
+            </div>
+            <div class="button ov">
+                <label for="save" class="fl">
+                    <input type="checkbox" checked id="save" name="save" value="1">
+                    <span>记住登录</span>
+                </label>
+                <button type="submit" class="btn blue fr" style="float: right;margin-right: 0px">
+                    <i class="fa fa-key"></i>登录
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="forgot">如果选择记住登录则默认保持登录30天</div>
+</div>
+<script src="__SOURCE__/function/rsa.js"></script>
+<script>
+$(function() {
+    //登录信息加密
+    var rsa = new RSAKey();
+    var modulus = "{$modulus}";
+    var exponent = "{$exponent}";
+    rsa.setPublic(modulus, exponent);
+    $('button[type="submit"]').click(function(event) {
+        var ie = navigator.userAgent.match(/MSIE ([0-9]+)\./);
+        if (ie && ie[1] < 8) {
+            layer.alert('<font color="red">当前浏览器(IE' + ie[1] + ')版本过低,请使用(IE10+,360浏览器,QQ浏览器,搜狗浏览器,<br/>chrome等主流浏览器,双核浏览器请使用极速模式)登录</font>');
+            return false;
+        }
+        var username = rsa.encrypt($('#username').val());
+        var password = rsa.encrypt($('#password').val());
+        $('input[name="username"]').val(username)
+        $('input[name="password"]').val(password);
+        return true;
+    });
+
+})
+//form 提交回调
+function callback(data) {
+    if (data.status == 1) {
+        var admin=data.data.admin;
+        $('.J_frame_nickname', parent.parent.document).html(admin.nickname);
+        if(admin.avatar&&admin.avatar!=''){
+            $('.J_frame_avatar', parent.parent.document).prop('src', admin.avatar);
+        }else{
+            $('.J_frame_avatar', parent.parent.document).prop('src', '__STATIC__/images/face.png');
+        }
+        $('.J_frame_group', parent.parent.document).html(admin.group.name);
+    }
+    return true;
+}
+</script>

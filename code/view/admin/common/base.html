@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{:title}</title>
+    <!-- 双核浏览器默认使用急速模式 -->
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <script src="__SOURCE__/jquery1.js"></script>
+    <script src="__SOURCE__/layer/layer.js"></script>
+    <script src="__STATIC__/js/script.js"></script>
+    <include path="common/global.html" />
+</head>
+
+<body>
+    <include path="__CONTENT__" />
+    <if condition="($_SERVER['REMOTE_ADDR']=='127.0.0.1')">
+        <div style="position: fixed;z-index: 999;background: red;right: 0px;bottom: 0px;">
+            <a class="hover" target="_blank" style="color: #000" href="{url($config['sys']['controller'].'/'.$config['sys']['action'],@$get)}">
+                {$config['sys']['controller']}/{$config['sys']['action']}
+            </a>
+        </div>
+    </if>
+    <link rel="stylesheet" href="__SOURCE__/font-awesome/font-awesome.css">
+</body>
+
+</html>

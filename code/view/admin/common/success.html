@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>成功</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+</head>
+
+<body>
+    <div class="page-tip-box">
+        <h1 class="green"><i class="fa fa-check"></i> {$message}</h1>
+        <h2><span id="time">3</span>秒后自动跳转</h2>
+        <ul style="margin-left: 20px;">
+            <li>
+                <i class="blue fa fa-hand-o-right"></i>
+                <a class="hover" href="javascript:window.location.href=document.referrer">手动跳转</a>
+            </li>
+        </ul>
+    </div>
+    <link rel="stylesheet" href="__SOURCE__/font-awesome/font-awesome.css">
+    <script>
+        var i=3;
+        var interval=setInterval(function(){
+            i--;
+            document.getElementById('time').innerHTML=i;
+            if(i==0){
+                clearInterval(interval);
+                setTimeout(function(){
+                    window.location.href=document.referrer;
+                },200)
+            }
+        },1000);
+    </script>
+</body>
+
+</html>

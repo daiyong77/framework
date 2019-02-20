@@ -1,0 +1,11 @@
+nginx配置
+放在
+location / {
+	if (!-e $request_filename) {
+		rewrite ^/dev/frame2/www/([\w]+)/([\w]+)$ /dev/frame2/www/index.php?c=$1&a=$2 last;
+		rewrite ^/dev/frame2/www/([\w]+)/([\w]+)/([\w]+)$ /dev/frame2/www/$1.php?c=$2&a=$3 last;
+		break;
+	}
+	index  index.html index.htm index.php;
+    autoindex  on;
+}

@@ -1,0 +1,58 @@
+<!--{:title('公告管理')}-->
+<div class="title">公告管理</div>
+<form action="{url('notice/list')}" method="get">
+    <ul class="search">
+        <li>
+            <dt>公告状态</dt>
+            <dd>
+                <input type="hidden" name="tid" value="{$get['tid']}">
+                <a class="btn-min {if(!$get['tid'])}current{/if}" href="{url('notice/list',$get,'tid=0')}">全部</a>
+                <foreach condition="($type as $k=>$v)">
+                    <a class="btn-min {if($get['tid']==$v['id'])}current{/if}" href="{url('notice/list',$get,'tid='.$v['id'])}">{$v['name']}</a>
+                </foreach>
+            </dd>
+        </li>
+        <li>
+            <dt></dt>
+            <dd>
+                <button class="btn green" type="submit">查询</button>
+                <a class="btn" href="{url('notice/list')}">重置</a>
+            </dd>
+        </li>
+    </ul>
+</form>
+<div class="title line"></div>
+<div class="option">
+    <a href="{url('notice/edit',$get)}" class="btn blue J_power J_show" data-title="添加公告">添加</a>
+</div>
+<table class="list">
+    <tr>
+        <th class="center" width="50">id</th>
+        <th width="400">标题</th>
+        <th width="170">发布时间</th>
+        <th>操作</th>
+    </tr>
+    <if condition="(!$list)">
+        <tr>
+            <td colspan="100">未找到任何记录</td>
+        </tr>
+    </if>
+    <foreach condition="($list as $v)">
+        <tr>
+            <td class="center">{$v['id']}</td>
+            <td>
+                <font style="color:green">[{$type[$v['tid']]['name']}]</font>{$v['title']}
+            </td>
+            <td>{$v['time_create']}</td>
+            <td>
+                <a title="修改" href="{url('notice/edit',$get,'id='.$v['id'])}" class="J_power J_show" data-title="修改公告">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                <a title="删除{$v['title']}" href="javascript:;" class="red J_confirm J_power" data-url="{url('notice/delete',array('id'=>$v['id']))}">
+                        <i class="red fa fa-trash-o"></i>
+                    </a>
+            </td>
+        </tr>
+    </foreach>
+</table>
+<include path="common/page.html" />
