@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="rsa.js"></script>
+</head>
+<body>
+	<div id="rsa"></div>
+	<script>
+		var rsa = new RSAKey();
+	    var modulus = "BAF2B85662AD120FB78F021E801B37A53FAB197F87C054125B48EE42718037F2F636D2E787C0F2C5AD57EDF9E4443D9E7794A2C6BA7F879A24BAFC179AA5AB3743DA82C8F72A401FA327ACA8DE53BC807042E1EC7669E6379A0B31892531A3721096AD8A754199A74C3D3E6A43A1F35F5E349B0F345819DA9A37D19164736B0F";
+	    var exponent = "10001";
+	    rsa.setPublic(modulus, exponent);
+
+	    document.getElementById('rsa').innerHTML=rsa.encrypt('xxxxxxxxx');
+	</script>
+</body>
+</html>

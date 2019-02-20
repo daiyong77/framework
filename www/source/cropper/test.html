@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../jquery3.js"></script>
+    <link rel="stylesheet" href="cropper.min.css">
+    <script src="cropper.min.js"></script>
+</head>
+
+<body>
+	<img src="test.jpg" alt="" class="J_image" style="width: 300px;">
+
+    <script>
+    $('.J_image').cropper({
+        aspectRatio: 2 / 3,//边框比例
+        viewMode: 1,//裁切模式 1 2 3
+        dragMode: 'move',
+        fillColor: '#fff',
+        autoCropArea: 1,
+        crop: function(data) {
+        	//拖移的参数
+            console.log(data);
+        }
+    });
+    </script>
+</body>
+
+</html>

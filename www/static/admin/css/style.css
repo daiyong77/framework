@@ -1,0 +1,142 @@
+/*css*/
+html,body,ul,ol,li,dl,dd,dt,p{margin: 0px; padding: 0px;}
+li{ list-style: none }
+textarea,input[type="text"],input[type="password"],input[type="tel"]{-webkit-appearance: none;outline:none;-webkit-tap-highlight-color: transparent;}
+a{ text-decoration: none; -webkit-tap-highlight-color: transparent;}
+a:hover{ text-decoration: underline; }
+/*a:hover{ text-decoration: none; }*/
+
+.fl{float: left;}
+.fr{float: right;}
+.blank10{ height: 10px; overflow: hidden; clear: both; }
+.ov{ overflow: hidden; }
+.hide{display: none}
+
+
+body,a{ font-size: 14px; }
+body{ padding: 0px 20px }
+a{ color: #337ab7 }
+a:hover{text-decoration: none}
+a.hover:hover{ text-decoration: underline; }
+textarea,input[type="text"],input[type="password"],select{ padding: 0px 5px; height: 28px; line-height: 28px; border: 1px solid #D5D5D5; width: 180px; }
+textarea:focus,input[type="text"]:focus,input[type="password"]:focus,select:focus{ border-color: #f59942 }
+textarea:hover,input[type="text"]:hover,input[type="password"]:hover,select:hover{ border-color: #f59942 }
+select{ height: 30px; width: 192px }
+textarea{ height: 100px; width: 300px; line-height: 18px; padding: 2px 5px;resize: vertical }
+
+.btn,.btn-min{ text-shadow: 0 -1px 0 rgba(0,0,0,.25); height: 30px; padding: 0px 20px; display: block; float: left; line-height: 30px; background: #ABBAC3; border: none; color: #fff; margin-right: 10px; cursor: pointer;}
+.btn:hover,.btn-min:hover,.btn.hover,.btn-min.hover{ background: #8b9aa3 }
+.btn.blue{ color:#fff; background:#428BCA;}
+.btn.blue:hover,.btn.blue.hover{ background: #1b6aaa }
+.btn.blue2{ color:#fff; background:#1E9FFF;}
+.btn.blue2:hover,.btn.blue2.hover{ background: #1891eb }
+.btn.red{ color:#fff; background:#D15B47;}
+.btn.red:hover,.btn.red.hover{ background: #c1402b }
+.btn.orange{ color:#fff; background:#fc9507;}
+.btn.orange:hover,.btn.orange.hover{ background: #e98a07 }
+.btn.green{ color:#fff; background:#00b36a;}
+.btn.green:hover,.btn.green.hover{ background: #019257 }
+a.red,.red{ color:#D15B47 }
+a.blue,.blue{ color:#428BCA }
+a.blue2,.blue2{ color:#1E9FFF }
+a.orange,.orange{ color:#ffb752 }
+a.green,.green{ color:green }
+
+.btn-toggle{position: relative; float: left}
+.btn-toggle ul{ display: none; padding: 10px 0px; position: absolute; left:0px;top: 30px; background: #fff;border:1px solid #d9d9d9; box-shadow: 0 2px 4px rgba(0,0,0,.2)}
+.btn-toggle ul li{ padding: 2px 15px; }
+.btn-toggle ul li:hover{background: #fee188; cursor: pointer;}
+
+.btn-min{  border-radius: 5px; padding: 0px 10px;}
+.btn-min.current{ background:#00b36a;}
+.btn-min.current:hover{ background:#019257;}
+
+.input-more li{ margin-bottom: 5px; overflow: hidden; }
+.input-more li:last-child{ margin-bottom: 0px; }
+
+.login .box,.login .forgot{ width: 340px; margin: 0 auto;background: #fff; box-shadow: 0 0 2px 1px rgba(0,0,0,.12); padding: 16px 36px 16px 36px }
+.login input[type="text"],.login input[type="password"]{ height: 36px; line-height: 36px; }
+.login .button{ line-height: 38px }
+.login .button a.btn{ height: 38px; line-height: 38px }
+.login .login-tip{ font-size: 18px; }
+.login .input input{ width:328px}
+.login .forgot{ color:#FE9;  background: #5090C1; text-align: center; }
+.login .title-big{ text-align: center; font-size: 30px; margin-top: 20px }
+.login .copyright{ text-align: center; padding: 5px 0px 20px}
+.login .input{ margin-top: 20px; }
+.login .button{ margin-top: 20px; }
+
+.title{ border-bottom:1px solid #d5e3ef; font-size: 20px; color: #2679B5; padding: 20px 0px 10px 0px; margin-bottom: 10px; }
+.title span.min{ font-size: 14px; color: #666 }
+.title.line{ padding-top: 0px; }
+.title-tab{padding-bottom: 0px; height: 35px;}
+.title-tab a{ font-size: 20px; padding: 0px 20px;height: 34px; display:block; float: left; position: relative;}
+.title-tab a.current{ border-bottom: 2px solid #2679B5;}
+.title-tab a:hover{border-bottom: 2px solid #3f9def;}
+.title-tab a i{ width: 20px; height: 20px; line-height: 20px; border-radius: 10px; display: block; text-align: center; position: absolute; right: -3px; top: -2px; background: red; color: #fff; font-size: 12px;font-style:normal }
+.search{ overflow: hidden; }
+.search li{  margin-right: 20px; float: left; }
+.search dt{ height: 24px; line-height: 24px; }
+.list{border-collapse:collapse; width: 100%; border-top: 1px solid #ddd; border-left: 1px solid #ddd; margin-bottom: 10px;}
+.list td,.list th{text-align: left;padding: 8px; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd }
+.list th{  background: #F2F2F2;background-image:-webkit-linear-gradient(top, #F8F8F8 0%, #ECECEC 100%); }
+.list .more{ text-align: center; cursor:pointer; color:#69AA46; font-size: 18px  }
+.list i{ font-size: 18px; }
+.list i:hover{ color: orange}
+.list tr:hover{ background: #f5f5f5 }
+.list td.center,.list th.center{ text-align: center; }
+.list td input.sort{ text-align: center; height: 20px; width: 30px }
+.list .btn{ height: 24px; padding: 0px 5px; line-height: 24px; margin-right: 5px; font-size: 12px; }
+.option{ /*overflow: hidden; */}
+.option .btn{ margin-bottom: 10px; }
+.page{ margin-bottom: 10px; overflow: hidden; border-left: 1px solid #d4dfe3; float: left;}
+.page li{ float: left; border: 1px solid #d4dfe3; border-left: none}
+.page li a{ padding: 6px 12px; display: block; }
+.page li.all a{ cursor: default; color: #777777 }
+.page li.current a{ cursor: default; color: #fff; background: #6FAED9;}
+.page li.current a:hover{ background: #6FAED9;}
+.page li.current { border:1px solid #6FAED9; border-left: none}
+.page li a:hover{ background: #eaeff2 }
+.page-fixed{ height: 55px; }
+.page-fixed ul{ border-left: 0px; }
+.page-fixed ul li:first-child{ border-left: 1px solid #d4dfe3 }
+.page-fixed ul.page{border-top:1px solid #ddd;margin-bottom:0px;bottom: 0px; left: 0px; position: fixed; display: block; background: linear-gradient( #fff,#e8e8e8);width: 100%; padding: 10px 0px 10px 20px;}
+/*.pagetip{ background: #dff0d8; border:1px solid #d6e9c6; color: #3c763d; padding: 15px; margin-bottom: 10px; }*/
+.page-tip{ background: #d9edf7; border:1px solid #bce8f1; color: #31708f; padding: 15px; margin-bottom: 10px; }
+.page-tip-box{padding: 0px 20px 20px; margin-top: 20px; border:1px solid #e3e3e3;background:#f5f5f5; box-shadow: inset 0 1px 1px rgba(0,0,0,.05)}
+.page-tip-box h1,.page-tip-box h2{ font-weight: 100 }
+.page-tip-box li{ line-height: 30px; }
+
+.table { margin-bottom: 10px; }
+.table th{ min-width: 100px; text-align: right; }
+.table th,.table td{  padding:5px}
+.table .tip,.table .must{ height: 28px; line-height: 28px; }
+.table .tip{ color: #999 }
+.table .must{ color: red }
+.table .box{ padding: 5px; border: 1px solid #D5D5D5; overflow-y: scroll;}
+.table .box:hover{border-color: #f59942}
+.table-show td,.table-show th{ border-right:1px solid #ddd; padding: 10px; border-bottom:1px solid #ddd; }
+.table-show{border-collapse:collapse; border-top: 1px solid #ddd; border-left: 1px solid #ddd; width: 100%}
+.table-button{background: #F5F5F5;border-top: 1px solid #E5E5E5;padding: 20px;overflow: hidden;}
+.table textarea{ float: left; margin-right: 5px; }
+
+.tab .tab-nav{ height: 40px; border-bottom: 1px solid #C5D0DC; border-left:  1px solid #C5D0DC; margin-bottom: 10px;}
+.tab .tab-nav li{ border:1px solid #C5D0DC; border-left: none; border-bottom: none; cursor: pointer; padding: 0px 20px; height: 40px; float: left; line-height: 40px; text-align: center; font-size: 14px; }
+.tab .tab-nav li:hover{ color: #48768e }
+.tab .tab-nav li.current{ border-top: 2px solid #4c8fbd; background: #fff; margin-top: -1px; color: #48768e}
+
+.image-list { overflow:hidden; }
+.image-list dd{ float: left; margin-right: 10px; }
+.image-list img{ float: left; margin-bottom: 10px; }
+.image-add{ border:1px solid #D5D5D5;height: 178px; height: 178px; cursor: pointer;}
+.image-add:hover{ opacity: 0.7 }
+
+.time-interval input{ text-align: center; width: 82px; float: left; }
+.time-interval i{ width: 28px; height: 28px; border-bottom:1px solid #ccc;border-top:1px solid #ccc; float: left; text-align: center;line-height: 28px; background: #eee}
+
+.listtip{ padding-left: 20px; }
+.listtip li{ list-style: decimal; line-height: 24px;  }
+
+ul.home-info{ padding-left:20px; }
+ul.home-info li{ list-style: inherit; line-height:26px;}
+.notice-body{ line-height: 24px; padding: 15px 0px;}
