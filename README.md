@@ -8,3 +8,4 @@ code/config.php为配置文件
 
 code/data文件夹下有数据库以及一些配置参数
 
+#composer相关的内容未上传 使用时需要在code目录下面执行
